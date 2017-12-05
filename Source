@@ -142,7 +142,7 @@ def calc(math_expression):
                     stack.append(Complex(int(elem), 0))
     return stack.pop()
 
-s = input('Выражение: ')
-while s != "exit":
-    print("Результат: " + str(calc(shunting_yard(s))))
-    s = input("Выражение: ")
+math_expression = input('Выражение: ')
+while math_expression != "exit":
+    print("Результат: " + str(calc(shunting_yard(math_expression))))
+    math_expression = input("Выражение: ")
