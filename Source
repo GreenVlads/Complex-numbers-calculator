@@ -12,7 +12,6 @@ print('Введите выражение, значение которого не
 
 
 class Complex:
-
     def __init__(self, x, y):
         self.a = x
         self.b = y
@@ -32,20 +31,20 @@ class Complex:
             return str(self.a)
 
     def __add__(self, other):
-        return complex(self.a+other.a, self.b+other.b)
+        return Complex(self.a+other.a, self.b+other.b)
 
     def __sub__(self, other):
-        return complex(self.a-other.a, self.b-other.b)
+        return Complex(self.a-other.a, self.b-other.b)
 
     def __mul__(self, other):
-        return complex(self.a*other.a-other.b*self.b, self.a*other.b+other.a*self.b)
+        return Complex(self.a*other.a-other.b*self.b, self.a*other.b+other.a*self.b)
 
     def __truediv__(self, other):
         if other.b == 0 and other.a == 0:
             print("ERROR: Деление на ноль!\nВыход из программы...")
             input()
             exit(0)
-        return complex((self.a*other.a+self.b*other.b)/(other.a**2+other.b**2), (other.a*self.b-other.b*self.a)/(other.a**2+other.b**2))
+        return Complex((self.a*other.a+self.b*other.b)/(other.a**2+other.b**2), (other.a*self.b-other.b*self.a)/(other.a**2+other.b**2))
 
 
 def shunting_yard(math_expression):  # Алгоритм сортировочной станции (приведение выражения к обратной польской нотации)
@@ -123,9 +122,9 @@ def calc(math_expression):
                 number = elem.split('+')  # разбиение числа на вещественную и мнимую часть
                 if len(number) > 1:
                     if len(number[1].split('i')[0]) == 0:
-                        stack.append(complex(int(number[0]), 1))
+                        stack.append(Complex(int(number[0]), 1))
                     else:
-                        stack.append(complex(int(number[0]), int(number[1].split('i')[0])))
+                        stack.append(Complex(int(number[0]), int(number[1].split('i')[0])))
             elif plus == 0:
                 minus = 0
                 for i in range(len(elem)):
@@ -136,11 +135,11 @@ def calc(math_expression):
                     number = elem.split('-')
                     if len(number) > 1:
                         if len(number[1].split('i')[0]) == 0:
-                            stack.append(complex(int(number[0]), -1))
+                            stack.append(Complex(int(number[0]), -1))
                         else:
-                            stack.append(complex(int(number[0]), -int(number[1].split('i')[0])))
+                            stack.append(Complex(int(number[0]), -int(number[1].split('i')[0])))
                 else:
-                    stack.append(complex(int(elem), 0))
+                    stack.append(Complex(int(elem), 0))
     return stack.pop()
 
 s = input('Выражение: ')
