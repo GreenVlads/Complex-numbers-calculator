@@ -130,7 +130,7 @@ def calc(math_expression):
                 minus = 0
                 for i in range(len(elem)):
                     if elem[i] == '-':
-                        minus=1
+                        minus = 1
                         break
                 if minus == 1:
                     number = elem.split('-')
